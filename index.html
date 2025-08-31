@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Full-screen canvas -->
+    <canvas id="gameCanvas" role="img" aria-label="Game of Life grid - click cells to toggle them"></canvas>
+    
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="canvasOverlay">
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <span>Initializing...</span>
+        </div>
+    </div>
+    
+    <!-- Top overlay controls -->
+    <div class="overlay-panel top-left" id="controlPanel">
+        <div class="panel-header">
+            <h1>Game of Life</h1>
+        </div>
+        <div class="controls">
+            <button id="playBtn" class="btn btn-primary" aria-label="Start simulation">
+                <span class="btn-icon">▶</span>
+            </button>
+            <button id="pauseBtn" class="btn btn-secondary" disabled aria-label="Pause simulation">
+                <span class="btn-icon">⏸</span>
+            </button>
+            <button id="stepBtn" class="btn btn-secondary" aria-label="Step one generation">
+                <span class="btn-icon">⏭</span>
+            </button>
+            <button id="clearBtn" class="btn btn-danger" aria-label="Clear all cells">
+                <span class="btn-icon">🗑</span>
+            </button>
+            <button id="randomBtn" class="btn btn-secondary" aria-label="Generate random pattern">
+                <span class="btn-icon">🎲</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Statistics overlay -->
+    <div class="overlay-panel top-right" id="statsPanel">
+        <div class="stats-grid">
+            <div class="stat">
+                <span class="stat-label">Generation</span>
+                <span id="generation" class="stat-number">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Population</span>
+                <span id="population" class="stat-number">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Density</span>
+                <span id="density" class="stat-number">0%</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Speed control overlay -->
+    <div class="overlay-panel bottom-center" id="speedPanel">
+        <div class="speed-control">
+            <div class="speed-slider-container">
+                <span class="speed-icon">🐰</span>
+                <input type="range" id="speedSlider" class="speed-slider" 
+                       min="50" max="1000" value="50" step="50"
+                       aria-label="Animation speed control">
+                <span class="speed-icon">🐌</span>
+            </div>
+            <span id="speedValue" class="speed-value">50ms</span>
+        </div>
+    </div>
+    
+    <!-- Help overlay (initially hidden) -->
+    <div class="overlay-panel bottom-right hidden" id="helpPanel">
+        <div class="help-content">
+            <div class="help-item">
+                <kbd>Space</kbd> Play/Pause
+            </div>
+            <div class="help-item">
+                <kbd>S</kbd> Step
+            </div>
+            <div class="help-item">
+                <kbd>C</kbd> Clear
+            </div>
+            <div class="help-item">
+                <kbd>R</kbd> Random
+            </div>
+        </div>
+    </div>
+    
+    <!-- Help toggle button -->
+    <button class="help-toggle" id="helpToggle" aria-label="Toggle help">
+        <span class="help-icon">?</span>
+    </button>
+    
+    <script src="js/game-of-life.js"></script>
+    <script src="js/canvas-renderer.js"></script>
+    <script src="js/controls.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
